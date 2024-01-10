@@ -1,4 +1,31 @@
+import { useState } from "react";
+
 const Header = () => {
+  const [showNav, setShowNav] = useState<boolean>(false);
+
+  // useEffect(() => {
+  //   const navbar = document.getElementById("navbarOne") as HTMLElement;
+  //   navbar.className =
+  //     "navbar-collapse sub-menu-bar collapsing ";
+  //   if (showNav) {
+  //     navbar.style.height = "309px";
+  //   }
+  //   // navbar.className = "navbar-collapse sub-menu-bar collapse"
+  //   const animate = setTimeout(() => {
+  //     navbar.classList.remove("collapsing");
+  //     if (showNav) {
+  //       navbar.classList.add("collapse", "show");
+  //       navbar.style.height = "200px";
+  //     } else {
+  //       navbar.classList.add("collapse");
+  //       navbar.style.height = "300px";
+  //     }
+  //   }, 500);
+  //   return () => {
+  //     clearTimeout(animate);
+  //   };
+  // }, [showNav]);
+
   return (
     <header>
       <section className="navbar-area navbar-one">
@@ -10,29 +37,23 @@ const Header = () => {
                   <img src="assets/logo.png" className="logo-alterra" alt="Logo" />
                 </a>
                 <button
-                  className="navbar-toggler"
+                  className={`navbar-toggler ${showNav ? "active" : "collapsed"}`}
                   type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#navbarOne"
-                  aria-controls="navbarOne"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
+                  onClick={() => setShowNav(!showNav)}
+                  aria-expanded={`${showNav ? "true" : "false"}`}
                 >
                   <span className="toggler-icon"></span>
                   <span className="toggler-icon"></span>
                   <span className="toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse sub-menu-bar" id="navbarOne">
+                <div
+                  className={`${showNav ? "show" : ""} collapse navbar-collapse sub-menu-bar `}
+                  id="navbarOne"
+                >
                   <ul className="navbar-nav m-auto">
                     <li className="nav-item">
                       <a
                         className="page-scroll active"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#sub-nav1"
-                        aria-controls="sub-nav1"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                        href="javascript:void(0)"
                       >
                         About
                         <div className="sub-nav-toggler">
